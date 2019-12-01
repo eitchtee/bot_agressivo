@@ -1,4 +1,5 @@
 import random
+import os
 import tweepy
 from config import CONSUMER_SECRET, CONSUMER_KEY, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
 
@@ -12,11 +13,13 @@ def twittar(msg: str):
 
 
 def gerar_ameaca():
-    with open('verbos', 'r', encoding='utf-8') as vrbs:
+    work_dir = os.path.dirname(os.path.realpath(__file__))
+
+    with open(f'{work_dir}/verbos', 'r', encoding='utf-8') as vrbs:
         verbos = vrbs.read().splitlines()
-    with open('sinonimos', 'r', encoding='utf-8') as snms:
+    with open(f'{work_dir}/sinonimos', 'r', encoding='utf-8') as snms:
         sinonimos = snms.read().splitlines()
-    with open('resultados', 'r', encoding='utf-8') as rstds:
+    with open(f'{work_dir}/resultados', 'r', encoding='utf-8') as rstds:
         resultados = rstds.read().splitlines()
 
     tweet_num = len(resultados) + 1
