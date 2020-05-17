@@ -15,25 +15,29 @@ def twittar(msg: str):
 def gerar_ameaca():
     work_dir = os.path.dirname(os.path.realpath(__file__))
 
-    with open(f'{work_dir}/verbos', 'r', encoding='utf-8') as vrbs:
+    with open(os.path.normpath(f'{work_dir}/verbos'),
+              'r', encoding='utf-8') as vrbs:
         verbos = vrbs.read().splitlines()
-    with open(f'{work_dir}/sinonimos', 'r', encoding='utf-8') as snms:
+    with open(os.path.normpath(f'{work_dir}/sinonimos'),
+              'r', encoding='utf-8') as snms:
         sinonimos = snms.read().splitlines()
-    with open(f'{work_dir}/resultados', 'r', encoding='utf-8') as rstds:
+    with open(os.path.normpath(f'{work_dir}/resultados'),
+              'r', encoding='utf-8') as rstds:
         resultados = rstds.read().splitlines()
 
     tweet_num = len(resultados) + 1
 
-    iterations = 0
+    iterations = 1
     while True:
         gerado = "Vou te {} {}".format(random.choice(verbos),
                                        random.choice(sinonimos))
 
         if gerado not in resultados:
             print("{}. {}".format(tweet_num, gerado))
-            twittar(gerado)
-            with open('resultados', 'w', encoding='utf-8') as rstds:
-                rstds.writelines(gerado)
+            # twittar(gerado)
+            with open(os.path.normpath(f'{work_dir}/resultados'),
+                      'a', encoding='utf-8') as rstds:
+                rstds.writelines(gerado+'\n')
             break
         elif iterations >= 500:
             print('Não foi possível encontrar uma combinação original '
