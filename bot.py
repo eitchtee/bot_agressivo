@@ -34,10 +34,10 @@ def gerar_ameaca():
 
         if gerado not in resultados:
             print("{}. {}".format(tweet_num, gerado))
-            # twittar(gerado)
+            twittar(gerado)
             with open(os.path.normpath(f'{work_dir}/resultados'),
                       'a', encoding='utf-8') as rstds:
-                rstds.writelines(gerado+'\n')
+                rstds.write(gerado+'\n')
             break
         elif iterations >= 500:
             print('Não foi possível encontrar uma combinação original '
