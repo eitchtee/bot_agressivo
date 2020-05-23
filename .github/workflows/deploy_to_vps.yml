@@ -8,7 +8,7 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2.1.1
-      - name: Enviar para servidor e Reiniciar Instância
+      - name: Enviar para servidor
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_IP }}
